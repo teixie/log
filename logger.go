@@ -38,37 +38,31 @@ func (b *bufferLogger) AppendAll(args ...interface{}) {
 
 func (b *bufferLogger) Flush() {
 	duration := float64(time.Now().Sub(b.startAt).Nanoseconds()) / 1e6
-	Log.Info(fmt.Sprintf("%s=%s cost=%vms %s ", "logId", b.logId, duration, b.buf.String()))
+	Log.Info(fmt.Sprintf("logId=%s cost=%vms %s", b.logId, duration, b.buf.String()))
 }
 
 func (b *bufferLogger) Debug(format string, args ...interface{}) {
-	s := fmt.Sprintf("%s=%s %s", "logId", b.logId, format)
-	Log.Debugf(s, args...)
+	Log.Debugf(fmt.Sprintf("logId=%s %s", b.logId, format), args...)
 }
 
 func (b *bufferLogger) Info(format string, args ...interface{}) {
-	s := fmt.Sprintf("%s=%s %s", "logId", b.logId, format)
-	Log.Infof(s, args...)
+	Log.Infof(fmt.Sprintf("logId=%s %s", b.logId, format), args...)
 }
 
 func (b *bufferLogger) Notice(format string, args ...interface{}) {
-	s := fmt.Sprintf("%s=%s %s", "logId", b.logId, format)
-	Log.Noticef(s, args...)
+	Log.Noticef(fmt.Sprintf("logId=%s %s", b.logId, format), args...)
 }
 
 func (b *bufferLogger) Warning(format string, args ...interface{}) {
-	s := fmt.Sprintf("%s=%s %s", "logId", b.logId, format)
-	Log.Warningf(s, args...)
+	Log.Warningf(fmt.Sprintf("logId=%s %s", b.logId, format), args...)
 }
 
 func (b *bufferLogger) Error(format string, args ...interface{}) {
-	s := fmt.Sprintf("%s=%s %s", "logId", b.logId, format)
-	Log.Errorf(s, args...)
+	Log.Errorf(fmt.Sprintf("logId=%s %s", b.logId, format), args...)
 }
 
 func (b *bufferLogger) Critical(format string, args ...interface{}) {
-	s := fmt.Sprintf("%s=%s %s", "logId", b.logId, format)
-	Log.Criticalf(s, args...)
+	Log.Criticalf(fmt.Sprintf("logId=%s %s", b.logId, format), args...)
 }
 
 func appendString(args ...interface{}) string {
